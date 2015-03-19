@@ -34,6 +34,14 @@
                 font-size: 30px;
             }
 
+            /* compound selectors to identify elements by two or more facets */
+            p.otherClass {
+                background: yellow;
+            }
+            li#otherId {
+                font-weight: bold;
+            }
+
         </style>
 
         <div>hello world</div>
@@ -42,12 +50,12 @@
 
         <div>
             <p class="nonUniqueClass">Paragraph</p>
-            <p>Another paragraph within the same div</p>
+            <p class="otherClass">Another paragraph within the same div</p>
         </div>
 
         <ol>
             <li id="uniqueId">First list element</li>
-            <li>Another list element</li>
+            <li id="otherId">Another list element</li>
             <li>
                 <p>Paragraph inside list element</p>
                 <p>Second paragraph</p>
