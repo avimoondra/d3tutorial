@@ -83,14 +83,18 @@
             document.getElementById('uniqueId');
             // <li id="some-id">Unique element</li>
 
-            var paras = document.getElementsByTagName('p').length;
-            console.log(paras)
+            var numParas = document.getElementsByTagName('p').length;
+            console.log(numParas)
             // 4
 
             var reds = document.getElementsByClassName('nonUniqueClass');
             // [<p class="red">Red paragraph</p>]
             console.log(reds[0].innerText)
             // "Red Paragraph"
+
+            var paragraphs = document.getElementsByTagName('p');
+            console.log(paragraphs)
+            // HTML collection of [p, p, ... p]
 
         </script>
     </body>
