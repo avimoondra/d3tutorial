@@ -33,13 +33,18 @@
             // this is called "data joining"
 
             // computes the join, also defining "enter" and "exit" subselections.
+            // the update selection is returned.
             var circle = svg.selectAll("circle")
                 .data(textData)
+
+            // if there were already circles, now would be the time to update them!
+            // if there were circles, and now some of them are not bound to data.. now is a good time to delete them!
 
             // appending to the enter selection creates the missing elements
             circle.enter().append("circle")
 
             // update attributes and styles on "update" selection
+            // updating old and new, a special feature of append (for less repeat code)
             circle
                 .attr("class", function(d){
                     return d; })
@@ -51,6 +56,7 @@
                 .style("fill", "lightgrey")
 
             // we can do this in one shot w/method chaining
+            // for static visualizations, this is THE d3 way to do things!
             var circle = svg.selectAll("circle")
                 .data(textData)
             .enter().append("circle")
