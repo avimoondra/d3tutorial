@@ -6,7 +6,31 @@
         <meta charset="utf-8">
     </head>
     <body>
+        <style>
+            .nonUniqueClass {
+                background: red;
+            }
+        </style>
+
         <!-- content, internal resources, external resources -->
+
+        <div>hello world</div>
+
+        <span foo="bar">foo bar</span>
+
+        <div>
+            <p class="nonUniqueClass"> Red Paragraph</p>
+            <p>Another paragraph within the same div</p>
+        </div>
+
+        <ol>
+            <li id="uniqueId">First list element</li>
+            <li>Another list element</li>
+            <li>
+                <p>Paragraph inside list element</p>
+                <p>Second paragraph</p>
+            </li>
+        </ol>
 
         <script>
             // basic print
@@ -55,25 +79,19 @@
             }
             console.log(vector)
 
+            // interaction with the DOM
+            document.getElementById('uniqueId');
+            // <li id="some-id">Unique element</li>
+
+            var paras = document.getElementsByTagName('p').length;
+            console.log(paras)
+            // 4
+
+            var reds = document.getElementsByClassName('nonUniqueClass');
+            // [<p class="red">Red paragraph</p>]
+            console.log(reds[0].innerText)
+            // "Red Paragraph"
+
         </script>
-
-        <div>hello world</div>
-
-        <span foo="bar">foo bar</span>
-
-        <div>
-            <p class="nonUniqueClass">Paragraph</p>
-            <p>Another paragraph within the same div</p>
-        </div>
-
-        <ol>
-            <li id="uniqueId">First list element</li>
-            <li>Another list element</li>
-            <li>
-                <p>Paragraph inside list element</p>
-                <p>Second paragraph</p>
-            </li>
-        </ol>
-
     </body>
 </html>
