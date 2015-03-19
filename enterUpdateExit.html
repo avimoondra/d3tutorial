@@ -36,17 +36,18 @@
         .attr("cy", 20)
         .style("stroke", "black")
 
-
-    // FIRST UPDATE
+    // --------------------------------------------------
+    // Bind more data than there are corresponding cirlce elements
 
     newcircs = svg.selectAll("circle")
         .data(d3.range(10))
 
-    // blow up on this selection (whatever is there of the 10)
+    // operate on old elements only (i.e. first 5 circles)
     newcircs.transition()
         .duration(1000)
         .attr("r", 10)
 
+    // operate on new (unbound) elements only
     newcircs.enter().append("circle")
         .attr("r", 5)
         .attr("cx", function(d, i){
@@ -55,7 +56,8 @@
         .attr("cy", 20)
         .style("fill", "green")
 
-    // SECOND UPDATE
+    // --------------------------------------------------
+    // Bind less data than there are corresponding cirlce elements
 
     window.setTimeout(function(){
 
@@ -67,6 +69,7 @@
             .duration(1000)
             .attr("opacity", 0.5)
 
+        // operate on new elements only (none)
         newcircs.enter().append("circle")
             .attr("r", 5)
             .attr("cx", function(d, i){
@@ -75,6 +78,7 @@
             .attr("cy", 20)
             .style("fill", "blue")
 
+        // operate on excess elements, i.e. last 7 circles
         newcircs.exit()
             .attr("class", "exit")
         .transition()
@@ -85,11 +89,6 @@
 
     }, 4000)
 
-
-
-
 </script>
-
 </body>
-
 </html>

@@ -34,7 +34,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data.csv", function(error, data) {
+d3.csv("iris.csv", function(error, data) {
 
     data.forEach(function(d) {
         d.sepalLength = +d.sepalLength;
@@ -81,40 +81,27 @@ d3.csv("data.csv", function(error, data) {
         .style("text-anchor", "end")
         .text("Sepal Length (cm)")
 
-    // LEGEND
-
-    var legend = svg.selectAll(".legend")
-        .data(color.domain())
-    .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-    legend.append("rect")
-        .attr("x", width - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", color);
-
-    legend.append("text")
-        .attr("x", width - 24)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text(function(d) { return d; });
-
     // DATAPOINTS
 
     window.setInterval(function(){
+        // d3.shuffle(data)
+
         subset = data.slice(0, Math.ceil(Math.random()*data.length))
+
         dots = svg.selectAll(".dot")
             .data(subset)
+
         dots.enter().append("circle")
             .attr("class", "dot")
             .style("fill", function(d) { return color(d.species); })
             .attr("r", 5)
             .attr("cx", xMap)
             .attr("cy", yMap)
+
         dots.exit().remove()
+
+        console.log(d3.selectAll("circle")[0].length)
+
     }, 1000)
 });
 
